@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": ["webpack-env", "webpack", "webpack-env"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "node_modules/bootstrap-vue/index.d.ts",
+    "node_modules/vue-kuzzle/index.d.ts",
+    "src/$log.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}
