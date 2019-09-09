@@ -72,7 +72,6 @@ export default {
       errorMessage: ''
     };
   },
-  mounted() {},
   methods: {
     async login() {
       const credentials = { username: this.username, password: this.password };
@@ -106,7 +105,7 @@ export default {
       if (this.errorMessage.match(/.*not connected to.*/)) {
         return this.$t('login.errors.notConnected');
       }
-      console.error(this.errorMessage);
+      this.$log.error(this.errorMessage);
       return this.$t('login.errors.generic');
     }
   }
