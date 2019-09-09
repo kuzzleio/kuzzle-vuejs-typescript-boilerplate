@@ -1,14 +1,9 @@
-.idea
-node_modules
-coverage
-test.js
-.nyc_output/
-
 .DS_Store
-/frontend/dist
+node_modules
+/dist
 
-/frontend/tests/e2e/videos/
-/frontend/tests/e2e/screenshots/
+/tests/e2e/videos/
+/tests/e2e/screenshots/
 
 # local env files
 .env.local
@@ -26,4 +21,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-*.sw*
+*.sw?
