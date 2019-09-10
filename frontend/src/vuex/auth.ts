@@ -1,8 +1,11 @@
-class AuthState {
-  // TODO Must define type KuzzleUser
-  public currentUser?: any;
+interface KuzzleUser {
+  username: string;
+}
 
-  constructor(currentUser?: any) {
+class AuthState {
+  public currentUser?: KuzzleUser;
+
+  constructor(currentUser?: KuzzleUser) {
     this.currentUser = currentUser;
   }
 }
@@ -10,9 +13,7 @@ class AuthState {
 const state = new AuthState();
 
 const g = {
-  currentUser: (s: AuthState) => s.currentUser,
-  currentUsername: (s: AuthState) =>
-    s.currentUser ? s.currentUser.username : null
+  currentUser: (s: AuthState) => s.currentUser
 };
 
 const actions = {
@@ -51,14 +52,16 @@ const actions = {
     return true;
   },
   FETCH_CURRENT_USER: async ({ commit }, kuzzle) => {
-    let currentUser;
+    let myCredentialsResponse;
     try {
-      currentUser = await kuzzle.auth.getMyCredentials('local');
+      myCredentialsResponse = await kuzzle.auth.getMyCredentials('local');
     } catch (error) {
       throw error;
     }
 
-    commit('SET_CURRENT_USER', currentUser);
+    commit('SET_CURRENT_USER', {
+      username: myCredentialsResponse.username
+    } as KuzzleUser);
 
     /**
      * Here, you can perform some data fetch related to your user-session.
@@ -79,7 +82,7 @@ const mutations = {
     s.currentUser = user;
   },
   UNSET_CURRENT_USER: (s: AuthState) => {
-    s.currentUser = null;
+    s.currentUser = undefined;
   }
 };
 

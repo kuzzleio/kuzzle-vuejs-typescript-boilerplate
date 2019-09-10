@@ -15,7 +15,7 @@
         <b-nav-item>
           <locale-changer />
         </b-nav-item>
-        <div class="d-md-down-none username">{{ currentUsername }}</div>
+        <div class="d-md-down-none username">{{ currentUser.username }}</div>
         <b-nav-item class="d-md-down-none" @click="logout">
           <i class="fa fa-sign-out"></i>
         </b-nav-item>
@@ -79,7 +79,7 @@ export default {
         }
       ];
     },
-    ...mapGetters('auth', ['currentUsername'])
+    ...mapGetters('auth', ['currentUser'])
   },
   methods: {
     logout() {

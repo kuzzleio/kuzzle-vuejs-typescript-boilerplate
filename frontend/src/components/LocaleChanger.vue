@@ -8,16 +8,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { i18n } from '@/config.json';
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 
-export default {
-  name: 'locale-changer',
-  data() {
-    /**
-     * Add languages in the config file to configure the locale changer
-     */
-    return { langs: i18n.locales };
-  }
-};
+@Component
+export default class LocaleChanger extends Vue {
+  private langs: any = i18n.locales;
+}
 </script>

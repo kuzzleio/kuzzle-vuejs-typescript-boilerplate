@@ -57,46 +57,43 @@
   </b-form>
 </template>
 
-<script>
-import LocaleChanger from '@/components/LocaleChanger';
+<script lang="ts">
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import LocaleChanger from './LocaleChanger.vue';
 
-export default {
-  name: 'LoginForm',
-  components: {
-    LocaleChanger
-  },
-  data() {
-    return {
-      username: '',
-      password: '',
-      errorMessage: ''
-    };
-  },
-  methods: {
-    async login() {
-      const credentials = { username: this.username, password: this.password };
-      this.setErrorMessage('');
+@Component({
+    components: {LocaleChanger}
+})
+export default class LoginForm extends Vue {
+  private username: string = '';
+  private password: string = '';
+  private errorMessage: string = '';
 
-      this.$store
-        .dispatch('auth/LOGIN', { credentials, kuzzle: this.$kuzzle })
-        .then(() => {
-          if (this.$route.query.to) {
-            this.$router.push({ name: this.$route.query.to });
-            return;
-          }
-          this.$router.push('/');
-        })
-        .catch(error => {
-          this.setErrorMessage(error.message);
-        });
-    },
-    setErrorMessage(errorMessage) {
-      this.errorMessage = errorMessage;
-    }
-  },
-  computed: {
-    translatedError() {
-      if (this.errorMessage.match(/wrong.*username.*password/)) {
+  private async login(): Promise<any> {
+    const credentials = { username: this.username, password: this.password };
+    this.setErrorMessage('');
+
+    this.$store
+      .dispatch('auth/LOGIN', { credentials, kuzzle: this.$kuzzle })
+      .then(() => {
+        if (this.$route.query.to) {
+          this.$router.push({ name: this.$route.query.to as string});
+          return;
+        }
+        this.$router.push('/');
+      })
+      .catch(error => {
+        this.setErrorMessage(error.message);
+      });
+  }
+
+  private setErrorMessage(errorMessage): void {
+    this.errorMessage = errorMessage;
+  }
+
+  get translatedError() {
+    if (this.errorMessage.match(/wrong.*username.*password/)) {
         return this.$t('login.errors.badCredentials');
       }
       if (this.errorMessage.match(/Missing.*credentials/)) {
@@ -107,9 +104,12 @@ export default {
       }
       this.$log.error(this.errorMessage);
       return this.$t('login.errors.generic');
-    }
   }
-};
+
+
+  
+}
+
 </script>
 
 <style scoped lang="sass">
