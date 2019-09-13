@@ -1,41 +1,69 @@
-# kuzzle-vuejs-typescript-boilerplate
+# Kuzzle, VueJS, TypeScript and CoreUI-Bootstrap boilerplate
 
-## Project setup
+A pretty fat boilerplate to start-off webapp projects based on Kuzzle and VueJS.
+This boilerplate is composed of a **backend**, located in `./backend` and a **frontend**, located in `./frontend`.
 
-```
-npm install
-```
+Each layer of the stack contains its corresponding `README.md` file. Please refer to it.
 
-### Compiles and hot-reloads for development
+## Overview
 
-```
-npm run serve
-```
+This boilerplate provides you with
 
-### Compiles and minifies for production
+  - A dockerized instance of Kuzzle, ready to be extended with a...
+  - ...plugin boilerplate mounted as a volume in the Kuzzle Docker container.
+  - A VueJS web application based on the Kuzzle SDK v6, including:
+  - an implementation of the authentication method integrated with Vuex,
+  - an implementation of the "Offline mode", also integrated with Vuex,
+  - a complete i18n setup based on vue-i18n,
+  - a complete CoreUI and Bootstrap-Vue installation (with Fontawesome 4),
+  - an instance of the vue-izitoast plugin
+  - a ready-to-go Cypress.io installation for e2e testing
+  
+## Get trained by the creators of Kuzzle :zap:
 
-```
-npm run build
-```
+Train yourself and your teams to use Kuzzle to maximize its potential and accelerate the development of your projects.  
+Our teams will be able to meet your needs in terms of expertise and multi-technology support for IoT, mobile/web, backend/frontend, devops.  
+:point_right: [Get a quote](https://hubs.ly/H0jkfJ_0)
 
-### Run your tests
+## Install
 
-```
-npm run test
-```
+Clone this repository using the following command
 
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Run your end-to-end tests
-
-```
-npm run test:e2e
+```bash
+git clone --recurse-submodules https://github.com/kuzzleio/kuzzle-vuejs-coreui-boilerplate.git
 ```
 
-### Customize configuration
+> Note that the `--recurse-submodules` is important since the `backend` folder is a submodule pointing to the [Kuzzle Plugin
+> Advanced Boilerplate](ttps://github.com/kuzzleio/kuzzle-plugin-advanced-boilerplate).
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Then, delete the Git tree and reinitialize the repo from scratch
+
+```bash
+cd kuzzle-vuejs-coreui-boilerplate
+rm -rf .git
+```
+
+At this point you may rename the folder of your project to a meaningful name.
+Then, you can set remote(s) the usual way
+
+```bash
+git init
+git remote add origin <another-git-server-URL-here>
+```
+
+## And then what?
+
+Start your local Kuzzle instance by typing
+
+```bash
+docker-compose -f backend/docker-compose.yml up -d
+```
+
+Serve your web app locally by typing
+
+```bash
+cd frontend
+npm install && npm run serve
+```
+
+Take a look at the `README.md` files in the `backend` and `frontend` directories to do the next steps.
