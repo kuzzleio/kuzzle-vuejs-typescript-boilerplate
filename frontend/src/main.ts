@@ -5,15 +5,18 @@ import './plugins/bootstrap-vue';
 import App from './App.vue';
 import { createRouter } from './router';
 import store from './store';
-import BootsrapVue from 'bootstrap-vue';
-import VueKuzzle from 'vue-kuzzle';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
+import VueKuzzle from 'vue-plugin-kuzzle';
 import config from './config.json';
 import i18n from './i18n';
 import './logger';
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/js/all.js';
 
 Vue.config.productionTip = false;
 
-Vue.use(BootsrapVue);
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 Vue.use(VueKuzzle, config);
 
 const router = createRouter(Vue.prototype.$kuzzle, store);

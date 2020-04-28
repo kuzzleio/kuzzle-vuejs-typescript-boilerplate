@@ -90,17 +90,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import '~bootstrap/dist/css/bootstrap.css';
-@import '~bootstrap-vue/dist/bootstrap-vue.css';
-@import '~@coreui/coreui/scss/coreui';
-
-/* Import Font Awesome Icons Set */
-$fa-font-path: '~font-awesome/fonts/';
-@import '~font-awesome/scss/font-awesome.scss';
-
-/* Import Main styles for this application */
-@import 'assets/style';
-
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

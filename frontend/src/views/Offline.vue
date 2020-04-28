@@ -30,8 +30,9 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="sass" scoped>
-.OfflinePage-icon
-  padding-bottom: 0.6em
-  color: rgb(115, 129, 143)
+<style lang="scss" scoped>
+.OfflinePage-icon {
+  padding-bottom: 0.6em;
+  color: rgb(115, 129, 143);
+}
 </style>

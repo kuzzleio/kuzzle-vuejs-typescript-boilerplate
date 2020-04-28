@@ -12,6 +12,7 @@
         v-model="username"
         type="text"
         class="form-control"
+        data-cy="username"
         :placeholder="$t('login.usernamePlaceholder')"
         autocomplete="username email"
       />
@@ -26,13 +27,14 @@
         v-model="password"
         type="password"
         class="form-control"
+        data-cy="password"
         :placeholder="$t('login.passwordPlaceholder')"
         autocomplete="current-password"
       />
     </b-input-group>
     <b-row>
       <b-col cols="2">
-        <b-button variant="primary" class="px-4" type="submit">
+        <b-button variant="primary" class="px-4" data-cy="submit" type="submit">
           {{ $t('login.submitLabel') }}
         </b-button>
       </b-col>
@@ -112,7 +114,8 @@ export default class LoginForm extends Vue {
 
 </script>
 
-<style scoped lang="sass">
-.alert
+<style scoped lang="scss">
+.alert {
   margin-top: 2em
+}
 </style>
