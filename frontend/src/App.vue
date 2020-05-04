@@ -90,6 +90,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+@import 'assets/style.scss';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

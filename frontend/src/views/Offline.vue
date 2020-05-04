@@ -1,6 +1,6 @@
 <template>
   <div class="OfflinePage app flex-row align-items-center">
-    <div class="container">
+    <b-container>
       <b-row class="justify-content-center">
         <b-col md="6">
           <div class="clearfix">
@@ -19,7 +19,7 @@
           ></b-progress>
         </b-col>
       </b-row>
-    </div>
+    </b-container>
   </div>
 </template>
 
