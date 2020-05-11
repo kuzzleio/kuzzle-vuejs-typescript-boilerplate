@@ -10,83 +10,71 @@
       variant="warning"
       toaster="b-toaster-bottom-right"
       append="true"
-    >
-      {{ $t('offline.message') }}
-    </b-toast>
+    >{{ $t('offline.message') }}</b-toast>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import Offline from './views/Offline.vue';
+import { Vue, Prop, Component, Watch } from 'vue-property-decorator';
 
-export default Vue.extend({
-  name: 'App',
-  computed: {
-    online(): boolean {
-      return this.$store.state.app.online;
-    },
-    locale(): string {
-      return this.$i18n.locale;
-    }
-  },
+@Component({
   components: {
     Offline
-  },
-  methods: {
-    checkConnection() {
-      if (this.online === false) {
-        this.$bvToast.show('offline-toast');
-      } else {
-        this.$bvToast.hide('offline-toast');
-      }
-    },
-    loadLocale() {
-      const persistedLocale = localStorage.getItem('locale');
-      if (persistedLocale) {
-        this.$i18n.locale = persistedLocale;
-      }
-    },
-    async initBackendConnection() {
-      this.$kuzzle.addListener('connected', () => {
-        this.$store.commit('app/SET_ONLINE');
-      });
-      this.$kuzzle.addListener('reconnected', () => {
-        this.$store.commit('app/SET_ONLINE');
-      });
-      this.$kuzzle.addListener('disconnected', () => {
-        this.$store.commit('app/SET_OFFLINE');
-      });
-      this.$kuzzle.addListener('tokenExpired', () => {
-        this.$store.dispatch('auth/LOG_OUT');
-        this.$router.push({ name: 'login' });
-      });
-
-      await this.$kuzzle.connect();
-      // Avoids showing the toast as soon as the app loads
-      setTimeout(() => {
-        this.checkConnection();
-      }, 1000);
-    }
-  },
-  async mounted() {
-    this.loadLocale();
-    await this.initBackendConnection();
-  },
-  watch: {
-    locale(newValue) {
-      if (newValue) {
-        localStorage.setItem('locale', this.locale);
-      }
-    },
-    online: {
-      immediate: false,
-      handler() {
-        this.checkConnection();
-      }
+  }
+})
+export default class App extends Vue {
+  get online(): boolean {
+    return this.$store.state.app.online;
+  }
+  get locale(): string {
+    return this.$i18n.locale;
+  }
+  public checkConnection() {
+    if (this.online === false) {
+      this.$bvToast.show('offline-toast');
+    } else {
+      this.$bvToast.hide('offline-toast');
     }
   }
-});
+  private loadLocale() {
+    const persistedLocale = localStorage.getItem('locale');
+    if (persistedLocale) {
+      this.$i18n.locale = persistedLocale;
+    }
+  }
+  private async initBackendConnection() {
+    this.$kuzzle.addListener('connected', () => {
+      this.$store.commit('app/SET_ONLINE');
+    });
+    this.$kuzzle.addListener('reconnected', () => {
+      this.$store.commit('app/SET_ONLINE');
+    });
+    this.$kuzzle.addListener('disconnected', () => {
+      this.$store.commit('app/SET_OFFLINE');
+    });
+    this.$kuzzle.addListener('tokenExpired', () => {
+      this.$store.dispatch('auth/LOG_OUT');
+      this.$router.push({ name: 'login' });
+    });
+    await this.$kuzzle.connect();
+    setTimeout(() => {
+      this.checkConnection();
+    }, 1000);
+  }
+  private async mounted() {
+    this.loadLocale();
+    await this.initBackendConnection();
+  }
+  @Watch('online')
+  public OnOnlineChange() {
+    this.checkConnection();
+  }
+  @Watch('locale(newValue)')
+  public OnLocaleChange() {
+    localStorage.setItem('locale', this.locale);
+  }
+}
 </script>
 
 <style lang="scss">

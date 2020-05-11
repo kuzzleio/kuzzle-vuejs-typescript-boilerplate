@@ -34,7 +34,7 @@
     </b-input-group>
     <b-row>
       <b-col cols="2">
-        <b-button variant="primary" class="px-4" data-cy="submit" type="submit">
+        <b-button variant="primary" class="px-4" data-cy="Login-btn" type="submit">
           {{ $t('login.submitLabel') }}
         </b-button>
       </b-col>
@@ -63,6 +63,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import LocaleChanger from './LocaleChanger.vue';
+
 
 @Component({
     components: {LocaleChanger}
@@ -106,12 +107,8 @@ export default class LoginForm extends Vue {
       }
       this.$log.error(this.errorMessage);
       return this.$t('login.errors.generic');
-  }
-
-
-  
+  } 
 }
-
 </script>
 
 <style scoped lang="scss">

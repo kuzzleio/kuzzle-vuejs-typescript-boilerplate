@@ -9,7 +9,7 @@
           src="../assets/kuzzle_vue.png"
         />
       </b-link>
-      <button type="button" class="btn btn-secondary" v-b-toggle.sidebar-1>
+      <button type="button" class="btn btn-secondary" v-b-toggle.sidebar>
         <i class="fa fa-bars"></i>
         <span class="sr-only">Toggle Menu</span>
       </button>
@@ -26,73 +26,34 @@
         <i class="fas fa-sign-out-alt navbar-text-color"></i>
       </b-navbar-nav>
     </b-navbar>
-
+    <SideBar />
     <div>
-      <div class="d-flex p-2">
-        <b-sidebar
-          id="sidebar-1"
-          width="200"
-          bg-variant="dark"
-          text-variant="light"
-          shadow
-        >
-          <h3>{{ $t('sidebar.menu') }}</h3>
-          <b-list-group class="m-3">
-            <b-list-group-item
-              class="text-left"
-              v-for="(item, index) in navItems"
-              :key="index"
-              :href="item.url"
-            >
-              <i :class="item.icon"></i>
-              {{ item.name }}
-            </b-list-group-item>
-          </b-list-group>
-        </b-sidebar>
-      </div>
       <router-view></router-view>
     </div>
   </div>
 </template>
 
-<script>
-import LocaleChanger from '../components/LocaleChanger';
+<script lang="ts">
+import LocaleChanger from '../components/LocaleChanger.vue';
 import { mapGetters } from 'vuex';
+import { Component } from 'vue-property-decorator';
+import Vue from 'vue';
+import SideBar from '../components/SideBar.vue';
 
-export default {
-  name: 'DefaultContainer',
+@Component({
   components: {
     LocaleChanger,
+    SideBar,
   },
   computed: {
-    navItems() {
-      return [
-        {
-          name: this.$t('sidebar.home'),
-          url: '/',
-          icon: 'cui-dashboard'
-        }
-      ];
-    },
     ...mapGetters('auth', ['currentUser'])
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch('auth/LOG_OUT', this.$kuzzle).then(() => {
-        this.$router.push('/login');
-      });
-    }
   }
-};
+})
+export default class DefaultContainer extends Vue {
+  private logout() {
+    this.$store.dispatch('auth/LOG_OUT', this.$kuzzle).then(() => {
+      this.$router.push('/login');
+    });
+  }
+}
 </script>
-
-<style scoped lang="scss">
-.navbar-text-color {
-  color: #fff;
-  margin: 0 0.3em 0 1em;
-}
-
-.nav-b-link {
-  margin: 5px;
-}
-</style>
