@@ -1,4 +1,4 @@
-# Kuzzle, VueJS, TypeScript and CoreUI-Bootstrap boilerplate
+# Kuzzle, VueJS, TypeScript and Bootstrap boilerplate
 
 A pretty fat boilerplate to start-off webapp projects based on Kuzzle and VueJS.
 This boilerplate is composed of a **backend**, located in `./backend` and a **frontend**, located in `./frontend`.
@@ -15,7 +15,7 @@ This boilerplate provides you with
   - an implementation of the authentication method integrated with Vuex,
   - an implementation of the "Offline mode", also integrated with Vuex,
   - a complete i18n setup based on vue-i18n,
-  - a complete CoreUI and Bootstrap-Vue installation (with Fontawesome 4),
+  - a complete Bootstrap-Vue installation (with Fontawesome 5),
   - an instance of the vue-izitoast plugin
   - a ready-to-go Cypress.io installation for e2e testing
   
@@ -30,7 +30,7 @@ Our teams will be able to meet your needs in terms of expertise and multi-techno
 Clone this repository using the following command
 
 ```bash
-git clone --recurse-submodules https://github.com/kuzzleio/kuzzle-vuejs-coreui-boilerplate.git
+git clone --recurse-submodules https://github.com/kuzzleio/kuzzle-vuejs-typescript-boilerplate.git
 ```
 
 > Note that the `--recurse-submodules` is important since the `backend` folder is a submodule pointing to the [Kuzzle Plugin
@@ -39,7 +39,7 @@ git clone --recurse-submodules https://github.com/kuzzleio/kuzzle-vuejs-coreui-b
 Then, delete the Git tree and reinitialize the repo from scratch
 
 ```bash
-cd kuzzle-vuejs-coreui-boilerplate
+cd kuzzle-vuejs-typescript-boilerplate
 rm -rf .git
 ```
 
