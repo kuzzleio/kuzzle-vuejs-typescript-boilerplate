@@ -6,13 +6,15 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue';
 import { BvModalEvent, BvEvent } from 'bootstrap-vue';
+import { Component } from 'vue-property-decorator';
 
-export default Vue.extend({
-  name: 'home',
+
+@Component({
   components: {
-    HelloWorld
-  }
-});
+    HelloWorld,
+  },
+})
+export default class Home extends Vue {}
 </script>

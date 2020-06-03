@@ -1,6 +1,6 @@
 <template>
   <div class="OfflinePage app flex-row align-items-center">
-    <div class="container">
+    <b-container>
       <b-row class="justify-content-center">
         <b-col md="6">
           <div class="clearfix">
@@ -19,19 +19,19 @@
           ></b-progress>
         </b-col>
       </b-row>
-    </div>
+    </b-container>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-export default Vue.extend({
-  name: 'Offline'
-});
+
+export default class Offline extends Vue {}
 </script>
 
-<style lang="sass" scoped>
-.OfflinePage-icon
-  padding-bottom: 0.6em
-  color: rgb(115, 129, 143)
+<style lang="scss" scoped>
+.OfflinePage-icon {
+  padding-bottom: 0.6em;
+  color: rgb(115, 129, 143);
+}
 </style>

@@ -10,6 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "types": ["webpack-env", "webpack", "webpack-env"],
     "paths": {

@@ -1,6 +1,6 @@
 <template>
   <div class="app flex-row align-items-center">
-    <div class="container">
+    <b-container>
       <b-row class="justify-content-center">
         <b-col md="8">
           <b-card-group>
@@ -12,17 +12,19 @@
           </b-card-group>
         </b-col>
       </b-row>
-    </div>
+    </b-container>
   </div>
 </template>
 
-<script>
-import LoginForm from '@/components/LoginForm';
+<script lang="ts">
+import LoginForm from '../components/LoginForm.vue';
+import { Component } from 'vue-property-decorator';
+import Vue from 'vue';
 
-export default {
-  name: 'loginPage',
+@Component({
   components: {
-    LoginForm
-  }
-};
+    LoginForm,
+  },
+})
+export default class Login extends Vue {}
 </script>
